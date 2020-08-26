@@ -13,7 +13,7 @@ module.exports={
     getRegister(req,res,next)
     {   
       if(req.isAuthenticated()) {
-        return res.redirect("/")
+        return res.redirect("/post")
     }
         res.render("register",{title:"Register Page",username:"",email:"",firstName:"",lastName:""});
     },
@@ -21,7 +21,7 @@ module.exports={
     {   
         if(req.isAuthenticated()) {
             // req.session.error = "You are already logged in "
-            return res.redirect("/")
+            return res.redirect("/post")
         }
         if (req.query.returnTo) req.session.redirectTo = req.headers.referer;
         console.log(req.query.returnTo)
@@ -93,7 +93,7 @@ module.exports={
     {
         req.logout();
         req.session.success = "Logged you out"
-        res.redirect("/");
+        res.redirect("/post");
    },
 
    async userprofile(req,res,next){
@@ -281,7 +281,7 @@ module.exports={
     if(req.user.isverfied)
     {
       req.session.success = "User Already verified";
-      return res.redirect("/");
+      return res.redirect("/post");
     }
     res.render("Resendemail"); 
 },
@@ -289,7 +289,7 @@ async resendEmail(req,res,next){
   if(req.user.isverfied)
   {
     req.session.success = "User already verified";
-    return res.redirect("/");
+    return res.redirect("/post");
   }
   const tokenval = new Token({userId:req.user._id, token: crypto.randomBytes(16).toString("hex")});
   await tokenval.save();
@@ -315,13 +315,13 @@ async resendEmail(req,res,next){
   if(!user)
   {
       req.session.error = "No such user exists";
-      return res.redirect("/");
+      return res.redirect("/post");
   }
   
   if(user.isverfied)
   {    
       req.session.error = "Email already verified";
-      return res.redirect("/");
+      return res.redirect("/post");
   }
   user.isverfied=true;
   await user.save();
