@@ -73,7 +73,7 @@ module.exports={
             const login =  util.promisify(req.login.bind(req));
             await login(user);
             req.session.success = `Welcome back ${user.username}`;
-            const redirecturl = req.session.redirectTo || "/";
+            const redirecturl = req.session.redirectTo || "/post";
             delete req.session.redirectTo;
             res.redirect(redirecturl);
 
@@ -236,7 +236,7 @@ module.exports={
     await sgMail.send(msg);
   
     req.session.success = 'Password successfully updated!';
-    res.redirect('/');
+    res.redirect('/post');
   },
   async googlelogin(req,res,next){
     passport.authenticate("google",(err,user,info)=>{
@@ -253,7 +253,7 @@ module.exports={
             return res.redirect("/login");
           }else{
             req.session.success = "Welcome back "+user.username;
-            var redirect = req.session.redirectTo || "/";
+            var redirect = req.session.redirectTo || "/post";
             delete req.session.redirectTo;
             return res.redirect(redirect);
           }
@@ -326,7 +326,7 @@ async resendEmail(req,res,next){
   user.isverfied=true;
   await user.save();
   req.session.success = "Email-Id is Successfully Verified";
-  return res.redirect(`/`);
+  return res.redirect(`/post`);
 }
 
 }

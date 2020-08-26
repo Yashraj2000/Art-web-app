@@ -99,7 +99,7 @@ passport.use(new googlestrategy({
         },
         email:profile._json.email,
       })
-      newuser.isverified = true
+      newuser.isverfied = true
       
      await newuser.save();
      return done(null,newuser)
