@@ -29,7 +29,7 @@ const user = require('./models/user');
 
 var app = express();
 
-// connecting databse 
+// connecting databses
 var url = process.env.DATABASE_URL || 'mongodb://localhost:27017/photo-app';
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false });
 var db = mongoose.connection;
