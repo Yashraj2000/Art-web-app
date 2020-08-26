@@ -92,7 +92,7 @@ passport.use(new googlestrategy({
         googleId:profile.id,
         firstName:profile.given_name,
         lastName:profile.family_name,
-        username:profile.displayName,
+        username:profile.given_name,
         image:{
           secure_url:profile._json.picture,
           public_id:profile._json.sub
