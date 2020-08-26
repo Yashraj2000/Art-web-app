@@ -56,7 +56,8 @@ router.put('/reset/:token',errorHandler(putReset));
 
   // This code will take use to consent screen
 router.get("/login/google",passport.authenticate("google",{
-  scope:["profile","email"]
+  scope:[        'https://www.googleapis.com/auth/userinfo.profile',
+  'https://www.googleapis.com/auth/userinfo.email']
 }));
 
 router.get("/login/google/callback",errorHandler(googlelogin));
