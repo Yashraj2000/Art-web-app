@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/621c8558b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src='https://cdn.tiny.cloud/1/0qq6ulpbszb30dtwl119it2bzpg95xfjozcyxfq4w10ic8ux/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: 'textarea#story',
+        setup: function (editor) {
+			      editor.on('change', function () {
+			          tinymce.triggerSave();
+			      });
+			  },
+        statubar: true,
+        plugins: [
+		"advlist autolink link  lists charmap  preview hr",
+		"searchreplace wordcount visualblocks visualchars  fullscreen",
+		"save  directionality emoticons  paste "
+         ],
+  toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link  preview  fullpage | forecolor backcolor emoticons",
+	style_formats: [
+		{title: "Headers", items: [
+			{title: "Header 1", format: "h1"},
+			{title: "Header 2", format: "h2"},
+			{title: "Header 3", format: "h3"},
+			{title: "Header 4", format: "h4"},
+			{title: "Header 5", format: "h5"},
+			{title: "Header 6", format: "h6"}
+		]},
+		{title: "Inline", items: [
+			{title: "Bold", icon: "bold", format: "bold"},
+			{title: "Italic", icon: "italic", format: "italic"},
+			{title: "Underline", icon: "underline", format: "underline"},
+			{title: "Strikethrough", icon: "strikethrough", format: "strikethrough"},
+			{title: "Superscript", icon: "superscript", format: "superscript"},
+			{title: "Subscript", icon: "subscript", format: "subscript"},
+			{title: "Code", icon: "code", format: "code"}
+		]},
+		{title: "Blocks", items: [
+			{title: "Paragraph", format: "p"},
+			{title: "Blockquote", format: "blockquote"},
+			{title: "Div", format: "div"},
+			{title: "Pre", format: "pre"}
+		]},
+		{title: "Alignment", items: [
+			{title: "Left", icon: "alignleft", format: "alignleft"},
+			{title: "Center", icon: "aligncenter", format: "aligncenter"},
+			{title: "Right", icon: "alignright", format: "alignright"},
+			{title: "Justify", icon: "alignjustify", format: "alignjustify"}
+		]}
+	]
+      });
+    </script>
+    <title>Art | Craft</title>
+</head>
+<body>
+    
+    <%- include('../partials/navbar') %>
+    <%- include('../partials/flash-message') %>
+    <%-  body-%>
+
+
+      <!-- Site footer -->
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="copyright-text mt-3">Copyright &copy; 2020 All Rights Reserved by 
+           Art | Craft.
+              </p>
+            </div>
+  
+            <div class="col-md-6">
+              <ul class="social-icons">
+                <li><a class="facebook" href="https://www.facebook.com/bankayash" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/yash-raj-651728169" target="_blank"><i class="fa fa-linkedin"></i></a></li>   
+              </ul>
+            </div>
+          </div>
+        </div>
+  </footer>
+<script src="/javascripts/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/javascripts/moment.js"></script>
+<script src="/javascripts/flash.js"></script>
+<script src="/javascripts/ajax.js"></script>
+<script src="/javascripts/salvattore.js"></script>
+<!-- <script src="/javascripts/formvalidation.js"></script> -->
+</body>
+</html>

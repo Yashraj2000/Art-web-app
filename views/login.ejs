@@ -1,0 +1,189 @@
+<%  layout("layouts/general")  -%>
+<div class="limiter">
+
+  <div class="container-login100 " >
+    <% if(success && success.length > 0){%>
+      <div class="container mt-3">
+        <div class="alert alert-success alert-dismissible fade show"role="alert">
+                 <h5 class="text-center mt-1"><%=success%></h5>  
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <% }if(error && error.length > 0){%>
+          <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <h5 class="text-center mt-1"><%=error%></h5>  
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          </div>
+        <%}%>
+    <div class="wrap-login100">
+      <form class="login100-form validate-form flex-sb flex-w" action="/login" method="POST">
+        <span class="login100-form-title">
+          Login In With
+        </span>
+        <a href="/login/google" class="btn-google m-b-20 w-100">
+          <img src="images/icon-google.png" alt="GOOGLE">
+          Google
+        </a>
+        
+        <div class="styleing">
+          <span class="txt1">
+            Email
+          </span>
+        </div>
+        <div class="wrap-input100 validate-input" data-validate = "Email is required">
+          <input type="email" id="email" class="input100" name="email" required/>
+          <span class="focus-input100"></span>
+        </div>
+        
+        <div class="styleing">
+          <span class="txt1">
+            Password
+          </span>
+
+          <a href="/forgot-password" class="txt2 bo1" style="margin-left: 5px;">
+            Forgot?
+          </a>
+        </div>
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+          <input class="input100"  type="password"  id="password"   name="password"  class="form-control" required />
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn" style="margin-top: 17px;">
+          <button class="login100-form-btn">
+            Sign In
+          </button>
+        </div>
+
+        <div class="w-full text-center pt-3">
+          <span class="txt2">
+            Not a member?
+          </span>
+
+          <a href="/register" class="txt2 bo1">
+            Sign up now
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 
+ <% if(success && success.length > 0){%>
+  <div class="container mt-4 p-0">
+    <div class="alert alert-success alert-dismissible fade show"role="alert">
+             <h5 class="text-center mt-1"><%=success%></h5>  
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <% }if(error && error.length > 0){%>
+      <div class="container mt-4 p-0">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <h5 class="text-center mt-1"><%=error%></h5>  
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      </div>
+    <%}%>
+
+ <div class="container1 mt-5 mb-5">
+   
+  <form action="/login" method="POST">
+    <a class="btn btn-ghost" href="/login/google" role="button">
+      <i class="fab fa-google"></i>
+      Log in with Google
+    </a>
+    <div>or</div>
+    <div class="form-control1">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter Email"
+        required
+      />
+    </div>
+    <div class="form-control1">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter Password"
+        required
+      />
+    </div>
+    <div class="checkbox-container">
+      <a href="/forgot-password">Forgot Password ?</a>
+    </div>
+    <button class="btn">Log In</button>
+    <div>Don't have account ? <a href="/register">Sign up</a></div>
+  </form>
+   -->
+
+
+
+
+
+
+
+
+
+<!-- <div class="row mt-5 mr-0 ml-1">
+  <div class="col-md-4 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+      <form action="/login" method="POST">        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block custom-lr">Login</button>
+      </form>
+      <p class="lead mt-4">
+        <span>No Account? <a href="/register">Register</a></span>
+        <span class="float-right">Forgot Password? <a href="/forgot-password">Reset</a></span>
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block" href="/login/google" role="button">
+            <i class="fab fa-google pr-1"></i>
+            Sign In with Google
+          </a>
+        </div>
+      </div>
+      </p>
+    </div>
+  </div>
+</div> -->

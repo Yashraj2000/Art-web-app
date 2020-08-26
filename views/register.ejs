@@ -1,0 +1,160 @@
+<%  layout("layouts/register")  -%>
+
+
+
+<div class="limiter">
+
+  <div class="container-login100 " >
+    <% if(success && success.length > 0){%>
+      <div class="container mt-3">
+        <div class="alert alert-success alert-dismissible fade show"role="alert">
+                 <h5 class="text-center mt-1"><%=success%></h5>  
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <% }if(error && error.length > 0){%>
+          <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <h5 class="text-center mt-1"><%=error%></h5>  
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          </div>
+        <%}%>
+    <div class="wrap-login100 mt-3">
+      <form class="login100-form validate-form flex-sb flex-w" action="/register" method="POST" id="form">
+        <span class="login100-form-title">
+          SignUp With
+        </span>
+        <a href="/login/google" class="btn-google m-b-20 w-100">
+          <img src="images/icon-google.png" alt="GOOGLE">
+          Google
+        </a>
+        
+        <div class="styleing">
+          <span class="txt1">
+            UserName
+          </span>
+        </div>
+        <div class="wrap-input100 validate-input">
+          <input type="text" name="username" id="name" class="input100"  required  value="<%= typeof username != 'undefined' ? username : '' %>">
+          <span class="focus-input100"></span>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="styleing">
+              <span class="txt1">
+                First Name
+              </span>
+            </div>
+            <div class="wrap-input100 validate-input">
+              <input type="text" name="firstName" class="input100" id="firstName"  required  value="<%= typeof firstName != 'undefined' ? firstName : '' %>">
+              <span class="focus-input100"></span>
+            </div>
+          </div>
+            <div class="col-md-6">
+              <div class="styleing">
+                <span class="txt1">
+                  Last Name
+                </span>
+              </div>
+              <div class="wrap-input100 validate-input">
+                <input type="text" name="lastName" id="lastName" class="input100"   required  value="<%= typeof lastName != 'undefined' ? lastName : '' %>">
+                <span class="focus-input100"></span>
+              </div>
+          </div>
+        </div>
+        
+        <div class="styleing">
+          <span class="txt1">
+            Email
+          </span>
+        </div>
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+          <input type="email" name="email" id="email" class="input100"  required  value="<%= typeof email != 'undefined'?email:''  %>">
+          <span class="focus-input100"></span>
+        </div>
+
+
+        <div class="styleing">
+          <span class="txt1">
+            Password
+          </span>
+        </div>
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+          <input class="input100"  type="password"  id="password"   name="password"  class="form-control" required />
+          <span class="focus-input100"></span>
+        </div>
+        <div id="check" class="pt-2"></div>
+
+        <div class="container-login100-form-btn" style="margin-top: 17px;">
+          <button class="login100-form-btn">
+            Sign Up
+          </button>
+        </div>
+        <div class="w-full text-center pt-3">
+          <span class="txt2">
+            Have an Account?
+          </span>
+          <a href="/login" class="txt2 bo1">
+            Login
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+     <!-- <div class="row mt-5 mr-0 ml-1">
+        <div class="col-md-4 m-auto">
+          <div class="card card-body">
+            
+            <h3 class="text-center"><i class="fas fa-user-plus"></i>Register</h3>
+            <form action="/register" method="POST" id="form">
+            <div class="form-group">
+              <label for="name">User Name</label>
+              <input type="text" name="username" id="name" placeholder="username" required class="form-control" value="<%= typeof username != 'undefined' ? username : '' %>">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" name="firstName" id="firstName" placeholder="firstName" required class="form-control" value="<%= typeof firstName != 'undefined' ? firstName : '' %>">
+                </div>
+              </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" name="lastName" id="lastName" placeholder="lastName" required class="form-control" value="<%= typeof lastName != 'undefined' ? lastName : '' %>">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">                                   
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Email" required class="form-control" value="<%= typeof email != 'undefined'?email:''  %>">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="password" required class="form-control">
+              <div id="check" class="pt-2"></div>
+            </div>
+            <button type="submit" class="btn btn-warning btn-block custom-lr">Register</button>
+            <p class="lead mt-3 text-center">Have an account ? <a href="/login">Login</a></p>
+            <hr>
+                <a class="btn btn-block" href="/login/google" role="button">
+                  <i class="fab fa-google"></i>
+                  Sign Up with Google
+                </a>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div> -->

@@ -1,0 +1,52 @@
+<%  layout("layouts/boilerplate")  -%>
+<style>
+  body{
+  background: #F4F4F4 !important;
+}
+</style>
+<div class="container mt-4">
+    <div class="row">
+        <div  id="grid" data-columns>
+        <% posts.forEach(function(post){ %>
+                <div class="card salvator-card mb-4" >
+                   <% if(post.images.length>0){ %>
+                    <a href="/post/<%=post._id%>" target="_blank">
+                        <img src="<%=  post.images[0].url %>" class="card-img-top" >
+                    </a>   
+                   <% } %>
+                   <div class="card-body">
+                    <p class="mb-2 date"><%= post.createdAt.toDateString().toUpperCase() %></p>
+                    <h5 class="card-title">
+                        <% if(post.title.length>50){%>
+                            <%=post.title.substr(0,50)%>...
+                      <%  }else{ %>
+                            <%=post.title%>
+                       <% } %>
+                    </h5>
+                    <p class="card-text lead">
+                        <% if(post.description.length>120){%>
+                            <%=post.description.substr(0,120)%>...
+                      <%  }else{ %>
+                            <%=post.description%>
+                       <% } %>
+                    </p>
+                    <hr>
+                    <span class="float-left mt-1">
+                        <img src="<%= post.author.image.secure_url %>" alt="userimage" class="img-fluid index-img">
+                        <span class="ml-2 pt-5">
+                      by &nbsp;
+                      <% if(post.author.username.length>8){%>
+                        <a href="/user/<%=post.author._id%>"><%=  post.author.username.substr(0,8)%>..</a>
+                        <%  }else{ %>
+                          <a href="/user/<%=post.author._id%>"><%=  post.author.username%></a>
+                     <% } %> 
+                    </span>
+                    </span>
+                    <span class="float-right btni mt-0"><i class="far fa-heart pr-2" style="font-size: 20px;"></i><%=post.likes.length%> </span>
+                  </div>
+                </div>
+        <% }); %>
+    </div>
+    </div>
+</div>
+

@@ -1,0 +1,93 @@
+<%  layout("layouts/profile")  -%>
+<div class="container-fluid user-profile mt-5 ">
+    <div class="">
+        <form action="/profile?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-row" style="margin-bottom: 110px;">
+		        <div class="col-md-4 text-center" style="margin-top: 30px;">
+    		        <div class="form-group">
+                        <div class="profile-img-container">
+                        <label for="upload">
+                            <img src="<%= currentUser.image.secure_url %>" id="image" alt="<%= currentUser.username%> Profile" class="profile-image img-fluid">
+                            <div id="a" ><i class="fas fa-camera-retro" style="font-size: 30px;"></i></div>
+                        </label>
+                    </div>
+                        <br><small>(This Deletes Existing Image)</small>
+                        <p  class="text-center mt-2" style="font-size: 26px;">
+                          <a href="/user/<%=currentUser._id%>"><%= currentUser.username %></a>  
+                        </p>
+                        <input type="file" class="form-control" id="upload" name="image" style="display: none;">
+
+                    </div>
+		        </div>
+		        
+		        <div class="col-md-8">
+		            <div class='form-row'>
+                        <div class="form-group col-md-6">
+                             <!-- autofocus will focus automatically put the cursor to where it is specified when page loads -->
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="username" autofocus required value="<%= currentUser.username %>">
+                            <div class="username"></div>
+            			</div>
+            			<div class="form-group col-md-6">
+                            <label for="Email">Email</label>
+                            <input type="text" class="form-control" id="Email" placeholder="Email" name="email" required value="<%=currentUser.email%>" >
+                            <div class="email"></div>
+                        </div>
+		            </div>
+
+        			<div class='form-row'>
+            	        <div class = 'form-group col-md-6'>
+            				<label for="FirstName">First Name</label>
+                <input type="text" id="FirstName" class="form-control" name="firstName" placeholder="firstName" required value="<%= currentUser.firstName %>">
+            			</div>
+            			<div class = 'form-group col-md-6'>
+            				<label for="LastName">Last Name</label>
+                <input type="text" id="LastName" class="form-control" name="lastName" placeholder="lastName" a required value="<%= currentUser.lastName %>">
+            			</div>        			    
+        			</div>        			
+        			<div class="form-group">
+                        <label for="bio">About Me
+                        <% if(currentUser.bio!=undefined){ %>
+                        <span class="float-right" id="about"><%=currentUser.bio.length%>/500</span>
+                       <%  }else{  %>
+                            <span class="float-right" id="about">0/500</span>
+                        <% }  %>
+                    </label>
+                        <textarea name="bio" maxlength="500" required class="form-control" id="bio" rows="4"><%=currentUser.bio%></textarea>
+                    </div> 
+        			<div class="form-group">
+                        <label for="tag">Tagline
+                        <% if(currentUser.tagline!=undefined){ %>
+                        <span class="float-right" id="tagline"><%=currentUser.tagline.length%>/90</span>
+                        <%  }else{  %>
+                            <span class="float-right" id="tagline">0/90</span>
+                            <% }  %>
+                        </label>
+                        <input name="tagline" maxlength="90" required id="tag" class="form-control" value="<%= currentUser.tagline %>">
+                    </div> 
+                    <% if(currentUser.googleId==undefined){%>
+                    <div class='form-row'>
+                    	<div class="form-group col-md-6">
+                            <label for="new-password">New password</label>
+                            <input type="password" class="form-control" id="new-password" placeholder="New Passoword" name="newPassword">
+                            <div id="pwd-length"></div>
+                        </div> 
+                        <div class="form-group col-md-6">
+                            <label for="password-confirmation">Password-confirmation</label>
+                            <input type="password" class="form-control" id="password-confirmation" placeholder="password-confirmation" name="passwordConfirmation">
+                            <div id="form-validation"></div>
+                        </div>
+                    </div>
+        			<div class="form-group">
+                        <!-- This is extra added step for authentication as whenever user updates his her profile we want to verify if they are who say they are so make sure they login -->
+                        <label for="current Passowrd">Current Password</label>
+                        <input type="password" class="form-control" id="current Passowrd" name="currentPassword" placeholder="Current Password(required to update profile)" required>
+                    </div>
+                    <%}%>
+                    <button  class="btn btn-outline-secondary mb-3 custom-btn">Save</button>
+		        </div>
+
+		    </div>
+		</form>
+	</div>
+</div>

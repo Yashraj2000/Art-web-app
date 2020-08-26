@@ -1,0 +1,95 @@
+<%  layout("layouts/boilerplate")  -%>
+  <div class="container mb-3">
+   <form action="/post" method="POST" id="form" required enctype="multipart/form-data">
+    <div class="form-group text-center mt-5" id="imgcontainer">
+        <label for="imgupload" class="custom-file-upload"><span class="material-icons"> add_a_photo</span></label>
+        <input type="file" class="form-control"  accept="image/*" style="display: none;"  id="imgupload" name="images" multiple>
+        <br><small>(At Least One Image is Required)</small>
+        <br><small>(You can upload upto 4 Images)</small>
+        <div id="imgerror"></div>
+    </div>
+  <div id="image-preview-container" class="mt-3" >
+      <!-- <div class="row" id="row-preview"></div> -->
+  </div>
+  <div class="form-group">
+      <label for="title">Title<i class="fas fa-asterisk"></i></label>
+      <input type="text" class="form-control" id="title" name="post[title]" required placeholder="Enter the title">
+  </div>
+  <div class="form-group">
+      <label for="story">Your Story<i class="fas fa-asterisk"></i></label>
+    <textarea name="post[description]" id="story" rows="20" class="form-control"  placeholder="Enter your story"></textarea>
+</div>
+<button class="btn btn-outline-secondary mb-3 custom-btn">Publish</button>
+</form>
+</div>
+
+<script>
+   var upload = document.getElementById("imgupload");
+   var imgcontainer = document.getElementById("image-preview-container");
+   upload.addEventListener("change",function(){
+       const file = this.files;
+       console.log(file);
+       document.getElementsByTagName("small")[1].innerHTML = `Total images are ${file.length}`
+       if(file.length>0)
+       {    
+           var len =  file.length;  
+           if(len>4)
+           len=4;
+           var row = document.createElement("div");
+           row.classList.add("row");
+        //    var row = document.getElementById("row-preview");
+                  for(var i = 0;i<len;i++)
+                  { 
+                    const reader = new FileReader();
+                    reader.addEventListener("load",function(){
+                         var div = document.createElement("div");
+                          div.style.margin="0 auto";
+                          var img = document.createElement("img");
+                          img.setAttribute("src",this.result);
+                          img.classList.add("img-fluid");
+                          img.classList.add("temp-ele");
+                          div.append(img);
+                          row.append(div);
+                        })
+                        console.log(ele);
+                        if(imgcontainer.hasChildNodes())
+                          imgcontainer.replaceChild(row,imgcontainer.childNodes[0]);
+                        else 
+                        {
+                            imgcontainer.append(row);
+                        }
+                        reader.readAsDataURL(file[i]);
+                  }
+
+              }else {
+                document.querySelector("#image-preview-container").remove();
+                document.getElementsByTagName("small")[1].innerHTML ="(You can upload upto 4 Images)"
+
+              }
+          })
+
+    let form = document.getElementById("form")
+    form.addEventListener('submit',(e)=>{
+        let errdiv = document.getElementById("imgerror")
+        let imgupload = document.getElementById("imgupload").files.length;
+        // console.log(imgupload)
+        if(imgupload>4)
+        {
+            e.preventDefault();
+            errdiv.innerHTML = "Sorry! You can upload max 4 imgaes";
+            errdiv.style.color = "red"
+        }
+        else if(imgupload==0)
+        {
+            e.preventDefault();
+            errdiv.innerHTML = "Sorry! Please upload atleast 1 image";
+            errdiv.style.color = "red"   
+        }
+        let textarea = document.getElementById("story");
+        if(textarea.value.length==0)
+        {
+            e.preventDefault();
+            alert("Please Enter Your story")
+        }
+    });
+</script>

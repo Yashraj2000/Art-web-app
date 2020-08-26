@@ -1,0 +1,65 @@
+<%  layout("layouts/general")  -%>
+<style>
+  body{
+    background-color: #f4f4f4;
+  }
+</style>
+<% if(success && success.length > 0){%>
+  <div class="container mt-3">
+    <div class="alert alert-success alert-dismissible fade show"role="alert">
+             <h5 class="text-center mt-1"><%=success%></h5>  
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <% }if(error && error.length > 0){%>
+      <div class="container mt-3">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <h5 class="text-center mt-1"><%=error%></h5>  
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      </div>
+    <%}%>
+<section id="forgot-password" >
+<div class="container-fluid">
+   <div class="row">
+     <div class="col-md-6" style="margin: 60px auto;">
+      <div class="card card-body" style="box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);">
+        <span class="login100-form-title pb-0">
+          Reset Password
+        </span>
+        <form action="/forgot-password?_method=PUT" method="POST">
+          <div class="styleing">
+            <span class="txt1">
+              Email
+            </span>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Email is required">
+            <input type="text"  id = "email" class="input100" name="email" required>
+            <span class="focus-input100"></span>
+          </div>
+          <div class="container-login100-form-btn" style="margin-top: 17px;">
+            <button class="login100-form-btn">
+              Reset Password
+            </button>
+          </div> 
+        </form>
+      </div>
+     </div>
+   </div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+

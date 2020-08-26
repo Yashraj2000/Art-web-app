@@ -1,0 +1,70 @@
+<%  layout("layouts/boilerplate")  -%>
+<div class="container mt-4 ">
+    <form action="/post/<%=post._id%>?_method=PUT" id="formsubmit" method="POST" enctype="multipart/form-data" >
+        <div class="form-group text-center">
+            <label for="imageupload" class="custom-file-upload"><span class="material-icons"> add_a_photo</span></label>
+            <br><small>(You can upload upto 4 Images)</small>
+            <br><small></small>
+            <input type="file" id="imageupload" accept="image/*" style="display: none;" name="images" multiple >
+            <div class="row mt-4" style="margin:0 auto">
+            <% post.images.forEach((img,i)=>{ %>
+                <div style="margin:0 auto">
+                <img src="<%= img.url%>" class="img-fluid edit-img" alt="Image unavailable">
+                <div class = "form-check text-center mt-2 mr-3">
+                    <input type="checkbox" value="<%= img.public_id %>" id="img<%=i%>" name="deleteimage[]" class="imageDeleteCheckbox">
+                <label class = "form-check-label mt-2" for="img<%=i%>">Delete?</label>
+                </div>
+            </div>
+                <% }) %>
+            
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="newpost[title]" required autofocus value="<%=post.title%>">
+        </div>
+        <div class="form-group">
+            <label for="story">Story</label>
+            <textarea name="newpost[description]" class="form-control" id="story" rows="15" ><%-post.description%></textarea>
+        </div>
+        <button class="btn btn-outline-secondary mb-3 custom-btn">Edit</button>
+    </form>
+</div>
+
+<script>
+// Finding form
+let formsubmit = document.getElementById("formsubmit");
+let imageupload = document.getElementById("imageupload");
+imageupload.addEventListener("change",function(){
+    if(this.files)
+    document.getElementsByTagName("small")[1].innerHTML = `Total images are ${this.files.length}`
+
+})
+let imageuploadlength = imageupload.files.length;
+formsubmit.addEventListener('submit', function(event){
+
+// finding length of uploaded image
+ imageupload = document.getElementById("imageupload");
+ imageuploadlength = imageupload.files.length
+// total no of image present
+let existingimg = document.querySelectorAll(".imageDeleteCheckbox").length;
+// Total image to delete
+let imgDeletion = document.querySelectorAll(".imageDeleteCheckbox:checked").length;
+
+let newtotal = existingimg - imgDeletion + imageuploadlength;
+if(newtotal>4)
+{   
+    event.preventDefault(); // prevent form from submitting
+    alert(`you need to delete atleast ${newtotal-4} ${newtotal-4>1?"images":"image"}`)
+}else if(newtotal===0){
+    event.preventDefault(); // prevent form from submitting
+    alert(`you need to upload atleast 1 image`) 
+}
+let textarea = document.getElementById("story");
+        if(textarea.value.length==0)
+        {
+            event.preventDefault();
+            alert("Please Enter Your story")
+        }
+})
+</script>
