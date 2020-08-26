@@ -72,8 +72,8 @@ passport.use(User.createStrategy());
 passport.use(new googlestrategy({
   clientID:process.env.GOOGLE_CLIENT_ID,
   clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "/login/google/callback"
-                
+  callbackURL: "/login/google/callback",
+  proxy: true        
 },async (accessToken,refreshToken,profile,done)=>{
   console.log(profile);
   //  whenever it code will come here and user is found it will pass it on to the serialise user
