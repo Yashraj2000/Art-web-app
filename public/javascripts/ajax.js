@@ -48,7 +48,8 @@ $("#comment").on("submit",function(e){
   e.preventDefault();
   var formData = $(e.target).serialize();
   e.target.reset();
-  $("#comment").attr("disabled",true);
+  $("#comment").find("button").attr("disabled",true);
+  $("#comment").find("button").textContent("Posting");
   $.ajax({
     url:commenturl,
     type:'post',
@@ -117,7 +118,8 @@ $("#comment").on("submit",function(e){
       // console.log(typeof ele)
       // commentcontainer.innerHTML = ele;
       $("#comment-container").prepend(ele);
-      $("#comment").attr("disabled",false);
+      $("#comment").find("button").attr("disabled",false);
+      $("#comment").find("button").textContent("Publish");
   } 
   })
   .fail(function(err){
