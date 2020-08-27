@@ -49,7 +49,7 @@ $("#comment").on("submit",function(e){
   var formData = $(e.target).serialize();
   e.target.reset();
   $("#comment").find("button").attr("disabled",true);
-  $("#comment").find("button").textContent("Posting");
+  $("#comment").find("button").text("Posting");
   $.ajax({
     url:commenturl,
     type:'post',
@@ -119,7 +119,7 @@ $("#comment").on("submit",function(e){
       // commentcontainer.innerHTML = ele;
       $("#comment-container").prepend(ele);
       $("#comment").find("button").attr("disabled",false);
-      $("#comment").find("button").textContent("Publish");
+      $("#comment").find("button").text("Publish");
   } 
   })
   .fail(function(err){
