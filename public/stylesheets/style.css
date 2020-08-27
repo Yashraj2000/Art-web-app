@@ -163,8 +163,11 @@ button:focus {
   margin:0;
   line-height:1.2em;
 }
+.scroll-button:hover{
+color: black;
+}
 
-#scroll-button {
+.scroll-button {
  border:none;
   font-size:16px;
   font-size:1rem;

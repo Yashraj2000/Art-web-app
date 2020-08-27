@@ -14,6 +14,11 @@ $("#like").on("submit",function(e){
     method:'POST'
   })
   .done(function(data){
+    if(data==="resend")
+    {
+      window.location.href = "/resend-page";
+    }else
+    {
       likeslength.textContent= data.likes.length
     if(data.likes.length==0)
     { 
@@ -27,10 +32,11 @@ $("#like").on("submit",function(e){
         nolike.innerHTML = ele2;
     })
     }
+  }
   })
   .fail(function(err){
     console.log(err)
-    alert("Something went wrong please try again in a moment")
+    alert("Something went wrong Please try again in a moment")
   })
 });
 
@@ -49,6 +55,10 @@ $("#comment").on("submit",function(e){
     data:formData
   })
   .done(function(data){
+    if(data==="resend")
+    {
+     return window.location.href = "/resend-page";
+    }
     commentcontainer.style.display="block";
     $("#nocomment").css("display","none");
     if(data.comments.length===0)

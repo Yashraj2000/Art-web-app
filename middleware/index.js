@@ -98,6 +98,10 @@ const middleware = {
         }
       },
       isverifiedUser(req,res,next){
+        if(req.xhr && !req.user.isverfied)
+        {
+          return res.send("resend");
+        }
         if(req.user.isverfied || req.user.googleId)
         {
           return next();
