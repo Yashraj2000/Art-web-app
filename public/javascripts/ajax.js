@@ -131,6 +131,7 @@ $("#comment").on("submit",function(e){
   })
   .fail(function(err){
     alert("Something went wrong Please try again")
+    $("#comment").find("button").attr("disabled",false);
   })
 })
     // DELETE COMMENT
