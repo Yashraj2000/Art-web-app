@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;400&family=Overpass:wght@100;200;400;600&display=swap');
-
 body {
   padding-top: 50px;
   /* padding-bottom: 87px;
@@ -231,6 +230,11 @@ color: black;
 
 .fa-heart{
   color: #F04054;
+  cursor: pointer;
+}
+.fa-heart-o {
+  color: #F04054;
+  cursor: pointer;
 }
 /* footer */
 .site-footer
@@ -713,6 +717,10 @@ h1,h2,h3,h6{
 
 /* heart btn in show page */
 #like .fa-heart{
+  font-size: 25px;
+}
+
+#like .fa-heart-o{
   font-size: 25px;
 }
 

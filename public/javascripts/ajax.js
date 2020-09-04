@@ -9,6 +9,13 @@ var nolike = document.getElementById("nolike");
 var ele2="";
 $("#like").on("submit",function(e){
   e.preventDefault();
+  if($("#heart").hasClass("liked")){
+    $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
+    $("#heart").removeClass("liked");
+  }else{
+    $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+    $("#heart").addClass("liked");
+  }
   $.ajax({
     url:formurl,
     method:'POST'

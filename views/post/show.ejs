@@ -22,7 +22,7 @@
       <hr>
       <div class="pb-5  d-flex align-items-center justify-content-center like-edit">
         <% if( (currentUser && currentUser._id.equals(post.author._id)) || (currentUser && currentUser.isAdmin))  {%>
-          <div class="dropdown px-5 mt-2">
+          <div class="dropdown px-5 mt-3">
             <span style="font-size: 55px;"><i class="fas fa-caret-down dropbtn crate"></i></span>
             <div class="dropdown-content">
               <a href="/post/<%=post._id%>/edit" style="color: black;" class="pl-2">Edit</a>
@@ -42,12 +42,14 @@
                   <i class="far fa-heart"></i>
                 </a>
                <% } else if(currentUser && post.likes.some(function (like) { return like.equals(currentUser._id) })) { %>
-                    <button class="form-submit-button mt-2"  style="font-size: 20px;">
-                      <i class="far fa-heart"></i>
-                    </button>
+                <button class="form-submit-button mt-2 liked" id="heart">
+                  <i class="fa fa-heart" aria-hidden="true" ></i>
+                  <!-- <i class="far fa-heart"></i> -->
+                </button>
                 <% } else { %>
-                    <button class="form-submit-button mt-2" style="font-size: 20px;">
-                      <i class="far fa-heart"></i>
+                    <button class="form-submit-button mt-2" id="heart">
+                         <i class="fa fa-heart-o" aria-hidden="true" ></i>
+                      <!-- <i class="far fa-heart"></i> -->
                     </button>
                 <% } %>
                 <button type="button"  class="form-submit-button mt-1 ml-4" data-toggle="modal"

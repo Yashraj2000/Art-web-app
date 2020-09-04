@@ -159,7 +159,8 @@ module.exports = {
   },
   async likepost(req,res,next){
       const post = await Post.findById(req.params.id).populate({
-          path:"likes"
+          path:"likes",
+          options:{sort:{_id:-1}}
         });
  
      let foundpost = post.likes.some(function(like){
