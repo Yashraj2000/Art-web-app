@@ -217,7 +217,7 @@ $("#comment").on("submit",function(e){
  $("#showmore").on("click",function(e){
  var currentpage=Number(this.dataset.page);
  anchor.setAttribute("disabled",true);
- console.log(currentpage,"on click");
+ //console.log(currentpage,"on click");
  e.preventDefault();
  var newurl = anchor.getAttribute("href");
  newurl+='?currentpage='+currentpage;
@@ -226,7 +226,7 @@ $("#comment").on("submit",function(e){
  method:'GET',
  data:currentpage,
  success:function(data){
-   console.log(data)
+   //console.log(data)
    if(data.comments && data.comments.length==0)
    { 
     //  comele = `<p class="text-center"><em>No more comments to show</em></p>`
@@ -282,6 +282,10 @@ $("#comment").on("submit",function(e){
       $("#comment-container").append(comele);
       anchor.setAttribute("disabled",false);
       // ending
- }
+ },
+ fail:function(a){
+  alert("something went wrong");
+  anchor.setAttribute("disabled",false);
+}
  })
 })
