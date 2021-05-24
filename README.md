@@ -18,3 +18,4 @@ Admin access is provided so that admin can moderate the content i.e admins are a
 
 Ejs is used as rendering template
 
+Cloudinary api is Used to upload the photos 
