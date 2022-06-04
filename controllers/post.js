@@ -1,7 +1,7 @@
 const Post = require("../models/post");
 const {cloudinary} = require("../cloudinary/index")
 const htmlToText = require('html-to-text');
-
+const axios = require("axios");
 
 module.exports = {
  
@@ -40,6 +40,19 @@ module.exports = {
    async createPost(req,res,next){
        //console.log(req.body)
      req.body.post.images = []
+     const postContent = htmlToText.fromString(req.body.post.description + req.body.post.title,{
+        ignoreImage:true,
+        ignoreHref:true,
+        preserveNewlines: false,
+        whitespaceCharacters: " "
+       });
+     console.log("post content", postContent);
+     const {data} = await axios.post('https://n2624peidk.execute-api.ap-south-1.amazonaws.com/dev/validator', postContent);
+     console.log(data,"this is the data");
+     if(data.result === "Non-Acceptable"){
+        req.session.error = "Sorry, You are not allowed to use such languages";
+        return res.redirect("/post");
+     }
     for(const file of req.files)
            {
                req.body.post.images.push({
@@ -137,6 +150,15 @@ module.exports = {
                   public_id:file.filename
               })
           }  
+      }
+      const postContent = req.body.newpost.description.concat(req.body.newpost.title);
+      console.log("post content", postContent);
+
+      const {data} = await axios.post('https://n2624peidk.execute-api.ap-south-1.amazonaws.com/dev/validator', postContent);
+      console.log(data.text,"this is the data");
+      if(data.result === "Non-Acceptable"){
+         req.session.error = "Sorry, You are not allowed to use such languages";
+         return res.redirect("/post");
       } 
       post.title = req.body.newpost.title  
       post.description = req.body.newpost.description;

@@ -130,8 +130,14 @@ $("#comment").on("submit",function(e){
   } 
   })
   .fail(function(err){
+    if(JSON.parse(err.responseText).msg){
+      alert(JSON.parse(err.responseText).msg)
+    }else{
+      alert("Something went wrong Please try again")
+    }
     alert("Something went wrong Please try again")
     $("#comment").find("button").attr("disabled",false);
+    $("#comment").find("button").text("Publish");
   })
 })
     // DELETE COMMENT
@@ -194,11 +200,15 @@ $("#comment").on("submit",function(e){
           data:commentdata,
           success:async function(data){
             // console.log(data);
+            if(data.msg != null){
+              alert(data.msg)
+            } else {
             var comcont = document.getElementById(`com-content${data._id}`)
             comcont.innerHTML = `<div class="container text-justify comment-value">${data.comment}</div><span class="float-right com-time">${ moment(data.updatedAt,moment.defaultFormat).fromNow()}</span>`;
             var commodel = document.getElementById(`collapseExample${data._id}`)
             // console.log(commodel.childNodes[1][0].textContent);
             commodel.childNodes[1][0].textContent = data.comment;
+            }
             self.find("button").attr("disabled",false);
             console.log(self)
             $(commodel).removeClass('show');

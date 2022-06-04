@@ -1,5 +1,7 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
+const axios = require("axios");
+
 module.exports={
 
 async createcomment(req,res,next){
@@ -12,6 +14,16 @@ async createcomment(req,res,next){
             }
         })
         req.body.newcomment.author = req.user;
+        const commentContent = req.body.newcomment.comment
+        const {data} = await axios.post('https://n2624peidk.execute-api.ap-south-1.amazonaws.com/dev/validator', commentContent);
+        console.log(data,"this is the data");
+        if(data.result === "Non-Acceptable"){
+            return res.status(400).send({
+                code: false,
+                msg:"You are not allowed to use such languages"
+    
+            });
+        }
         const comment = await Comment.create(req.body.newcomment);
         post.comments.push(comment);
         await post.save();
@@ -30,6 +42,14 @@ async editcomment(req,res,next){
         // console.log(req.body.newcomment)
        var com =  await Comment.findById(req.params.comment_id);
        com.comment = req.body.newcomment.comment;
+       const {data} = await axios.post('https://n2624peidk.execute-api.ap-south-1.amazonaws.com/dev/validator', req.body.newcomment.comment);
+       if(data.result === "Non-Acceptable"){
+        return res.status(200).send({
+            code: false,
+            msg:"You are not allowed to use such languages"
+
+        });
+       }
       await com.save();
     //    console.log(com)
         // req.session.success="Updated successfully"
