@@ -51,7 +51,7 @@ module.exports = {
      console.log(data,"this is the data");
      if(data.result === "Non-Acceptable"){
         req.session.error = "Sorry, You are not allowed to use such languages";
-        return res.redirect("/post");
+        return res.redirect("/post/new");
      }
 
      const titleContent = htmlToText.fromString(req.body.post.title,{
@@ -65,7 +65,7 @@ module.exports = {
        console.log(titledata,"this is the titledata");
        if(titledata.result === "Non-Acceptable"){
           req.session.error = "Sorry, You are not allowed to use such languages";
-          return res.redirect("/post");
+          return res.redirect("/post/new");
        }
     for(const file of req.files)
            {
@@ -177,7 +177,7 @@ module.exports = {
      console.log(data,"this is the data");
      if(data.result === "Non-Acceptable"){
         req.session.error = "Sorry, You are not allowed to use such languages";
-        return res.redirect("/post");
+        return res.redirect("/post/new");
      }
 
      const titleContent = htmlToText.fromString(req.body.newpost.title,{
@@ -191,7 +191,7 @@ module.exports = {
        console.log(titledata,"this is the titledata");
        if(titledata.result === "Non-Acceptable"){
           req.session.error = "Sorry, You are not allowed to use such languages";
-          return res.redirect("/post");
+          return res.redirect("/post/new");
        }
       post.title = req.body.newpost.title  
       post.description = req.body.newpost.description;
